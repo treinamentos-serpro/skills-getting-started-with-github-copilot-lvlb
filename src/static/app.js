@@ -27,6 +27,40 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
         `;
 
+        const participantsSection = document.createElement("div");
+        participantsSection.className = "participants-section";
+        participantsSection.style.cssText = `
+          margin-top: 1rem;
+          padding: 0.75rem 1rem;
+          border-radius: 0.5rem;
+          background: rgba(0, 0, 0, 0.04);
+        `;
+
+        const participantsHeading = document.createElement("strong");
+        participantsHeading.textContent = "Participants";
+        participantsSection.appendChild(participantsHeading);
+
+        const participantsList = document.createElement("ul");
+        participantsList.className = "participants-list";
+        participantsList.style.cssText = "margin: 0.5rem 0 0; padding-left: 1.25rem;";
+
+        if (details.participants.length > 0) {
+          details.participants.forEach((participant) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = participant;
+            listItem.style.marginBottom = "0.25rem";
+            participantsList.appendChild(listItem);
+          });
+        } else {
+          const listItem = document.createElement("li");
+          listItem.textContent = "No participants yet";
+          listItem.style.fontStyle = "italic";
+          participantsList.appendChild(listItem);
+        }
+
+        participantsSection.appendChild(participantsList);
+        activityCard.appendChild(participantsSection);
+
         activitiesList.appendChild(activityCard);
 
         // Add option to select dropdown
